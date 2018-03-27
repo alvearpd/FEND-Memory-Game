@@ -10,3 +10,18 @@ const gameContainer = document.querySelector(".game-container");
  */
 const cardsList = document.createElement("ul");
 gameContainer.appendChild(cardsList);
+
+/*
+ * Card Grid
+ */
+const cardsFrag = document.createDocumentFragment();
+function buildGrid(grid) {
+    for (let i = 0; i < (2 * grid); i++) {
+        const newCard = document.createElement("li");
+        newCard.innerHTML = "<i class='fa fa-heart'></i>";
+        cardsFrag.appendChild(newCard);
+    }
+    cardsList.appendChild(cardsFrag);
+
+}
+buildGrid(8);
