@@ -12,6 +12,13 @@ const cardsList = document.createElement("ul");
 gameContainer.appendChild(cardsList);
 
 /*
+ * Icons List
+ *  - Shuffle
+ *  - 2 index for the same icon [ To match them ]
+ */
+const iconsList = ['far fa-edit', 'far fa-calendar', 'far fa-gem', 'far fa-paper-plane', 'far fa-play-circle', 'far fa-save', 'far fa-smile', 'far fa-snowflake', 'far fa-user'];
+
+/*
  * Card Grid
  */
 const cardsFrag = document.createDocumentFragment();
