@@ -15,7 +15,7 @@ ul li {
     color: #eee;
     background: #333;
 }
-ul li i {
+ul li svg {
     opacity: 0;
 }
 ul li.open i {
