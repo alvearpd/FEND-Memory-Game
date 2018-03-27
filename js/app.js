@@ -51,8 +51,8 @@ Array.prototype.forEach.call(cardsArray, function (el) {
     });
 })
 
-// const firstCard = document.querySelector("ul li i");
-// firstCard.classList = "far fa-edit";
+const firstCard = document.querySelector("ul li i");
+firstCard.classList = "far fa-edit";
 /*
  * Compare 2 cards
  *   - Check if the `openCards` array have 2 cards
@@ -77,6 +77,10 @@ function compareCards() {
             console.log("Not Matched");
             openCards.forEach(function(card) {
                 card.style.backgroundColor = "red";
+                setTimeout(function() {
+                    card.style.backgroundColor = "#333";
+                    card.children[0].style.opacity = "0";
+                }, 500);
             });
             
         }
