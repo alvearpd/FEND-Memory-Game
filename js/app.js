@@ -32,12 +32,39 @@ buildGrid(8);
  * Add that card to the Open Cards list
  */
 const cardsArray = document.querySelectorAll("ul li");
-const openCards = [];
-Array.prototype.forEach.call(cardsArray, function(el) {
-    el.addEventListener("click", function() {
+let openCards = [];
+Array.prototype.forEach.call(cardsArray, function (el) {
+    el.addEventListener("click", function () {
         // Visible the icon
         el.children[0].style.opacity = "1";
         // Add it to the Open Cards list
         openCards.push(el);
+        // Compare Cards
+        compareCards();
     });
 })
+
+const firstCard = document.querySelector("ul li i");
+firstCard.classList = "fab fa-apple";
+/*
+ * Compare 2 cards
+ *   - Check if the `openCards` array have 2 cards
+ *   - If yes, compare them
+ */
+function compareCards() {
+    if (openCards.length == 2) {
+
+        // Matched
+        if (openCards[0].children[0].className == openCards[1].children[0].className) {
+
+            console.log("matched!");
+            openCards = [];
+
+        // NOT Matched
+        } else { 
+            console.log("Not Matched");
+            openCards = [];
+        }
+
+    }
+}
