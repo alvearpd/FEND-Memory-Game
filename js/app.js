@@ -53,6 +53,7 @@ firstCard.classList = "fab fa-apple";
  *   - Calculate moves
  */
 let moves = 0;
+const movesContainer = document.querySelector(".moves span");
 function compareCards() {
     if (openCards.length == 2) {
 
@@ -78,5 +79,6 @@ function compareCards() {
 
         // Add move
         moves++;
+        movesContainer.textContent = moves;
     }
 }
