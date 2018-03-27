@@ -50,7 +50,9 @@ firstCard.classList = "fab fa-apple";
  * Compare 2 cards
  *   - Check if the `openCards` array have 2 cards
  *   - If yes, compare them
+ *   - Calculate moves
  */
+let moves = 0;
 function compareCards() {
     if (openCards.length == 2) {
 
@@ -73,5 +75,8 @@ function compareCards() {
 
         // Empty the Open Cards array
         openCards = [];
+
+        // Add move
+        moves++;
     }
 }
