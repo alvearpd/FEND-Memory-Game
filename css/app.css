@@ -1,0 +1,23 @@
+.game-container {
+    text-align: center
+}
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+ul li {
+    display: inline-block;
+    width: 23%;
+    height: 100px;
+    line-height: 100px;
+    margin: 1%;
+    text-align: center;
+    color: #eee;
+    background: #333;
+}
+ul li i {
+    opacity: 0;
+}
+ul li.open i {
+    opacity: 1;
+}
