@@ -18,7 +18,7 @@ const cardsFrag = document.createDocumentFragment();
 function buildGrid(grid) {
     for (let i = 0; i < (2 * grid); i++) {
         const newCard = document.createElement("li");
-        newCard.innerHTML = "<i class='fa fa-heart'></i>";
+        newCard.innerHTML = "<i class='fab fa-apple'></i>";
         cardsFrag.appendChild(newCard);
     }
     cardsList.appendChild(cardsFrag);
@@ -44,8 +44,8 @@ Array.prototype.forEach.call(cardsArray, function (el) {
     });
 })
 
-const firstCard = document.querySelector("ul li i");
-firstCard.classList = "fab fa-apple";
+// const firstCard = document.querySelector("ul li i");
+// firstCard.classList = "far fa-edit";
 /*
  * Compare 2 cards
  *   - Check if the `openCards` array have 2 cards
@@ -57,8 +57,8 @@ const movesContainer = document.querySelector(".moves span");
 function compareCards() {
     if (openCards.length == 2) {
 
-        // Matched
-        if (openCards[0].children[0].className == openCards[1].children[0].className) {
+        // Matched [ SVG Icon ]
+        if (openCards[0].children[0].attributes[0].nodeValue == openCards[1].children[0].attributes[0].nodeValue) {
 
             console.log("matched!");
             openCards.forEach(function(card) {
