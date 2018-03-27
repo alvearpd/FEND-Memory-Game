@@ -58,13 +58,20 @@ function compareCards() {
         if (openCards[0].children[0].className == openCards[1].children[0].className) {
 
             console.log("matched!");
-            openCards = [];
+            openCards.forEach(function(card) {
+                card.style.backgroundColor = "green";
+            });
 
         // NOT Matched
         } else { 
             console.log("Not Matched");
-            openCards = [];
+            openCards.forEach(function(card) {
+                card.style.backgroundColor = "red";
+            });
+            
         }
 
+        // Empty the Open Cards array
+        openCards = [];
     }
 }
