@@ -25,3 +25,19 @@ function buildGrid(grid) {
 
 }
 buildGrid(8);
+
+/* 
+ * Card Click Event
+ * Make the icon visible
+ * Add that card to the Open Cards list
+ */
+const cardsArray = document.querySelectorAll("ul li");
+const openCards = [];
+Array.prototype.forEach.call(cardsArray, function(el) {
+    el.addEventListener("click", function() {
+        // Visible the icon
+        el.children[0].style.opacity = "1";
+        // Add it to the Open Cards list
+        openCards.push(el);
+    });
+})
