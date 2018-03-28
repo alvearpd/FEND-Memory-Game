@@ -91,6 +91,9 @@ function cardClick() {
                         allOpenCards.push(currentCard.childNodes[0].className, previousCard.childNodes[0].className);
 
                         console.log("matches!");
+
+                        // Check over
+                        checkOver();
                     } else {
 
                         // Incorrect highlight
@@ -126,7 +129,14 @@ function cardClick() {
     }
 }
 
-
+/*
+ * Game Over
+ */
+function checkOver() {
+    if(iconsList.sort().toString() === allOpenCards.sort().toString()) {
+        alert("GAME OVER!");
+    }
+}
 
 
 
