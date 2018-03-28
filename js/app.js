@@ -12,11 +12,27 @@ const cardsList = document.createElement("ul");
 gameContainer.appendChild(cardsList);
 
 /*
- * Icons List
- *  - Shuffle
- *  - 2 index for the same icon [ To match them ]
+ *  iconsList: icons inventory
  */
 const iconsList = ['far fa-edit', 'far fa-calendar', 'far fa-gem', 'far fa-paper-plane', 'far fa-play-circle', 'far fa-save', 'far fa-smile', 'far fa-snowflake', 'far fa-user'];
+
+/*
+ * getIcons(para)
+ *  - Extract icons from the `iconsList` based on the grid size
+ *  - Duplicate each icon to match them later ( 2 Copies from each icon)
+ *  
+ *  @para: the Grid Sized
+ *  Return: A full list of duplicated, shuffled - by 1shuffleIcons() - icons 
+ * 
+ */
+function getIcons(grid) {
+    // Returns the elements based on the grid's size
+    const icons = iconsList.slice(0, grid);
+    // Duplicate each icon to match them together
+    const duplicateIcons = icons.concat(icons);
+    // Return the icnos after being shuffled
+    return shuffleIcons(duplicateIcons);
+}
 
 /*
  * Card Grid
@@ -25,13 +41,17 @@ const cardsFrag = document.createDocumentFragment();
 function buildGrid(grid) {
     for (let i = 0; i < (2 * grid); i++) {
         const newCard = document.createElement("li");
-        newCard.innerHTML = "<i class='fab fa-apple'></i>";
+        const icons = getIcons(grid);
+        const currentIcon = icons[i];
+        console.log(currentIcon);
+        newCard.innerHTML = "<i class='" + currentIcon + "'></i>";
+
         cardsFrag.appendChild(newCard);
     }
     cardsList.appendChild(cardsFrag);
 
 }
-buildGrid(8);
+buildGrid(4);
 
 /* 
  * Card Click Event
@@ -68,21 +88,21 @@ function compareCards() {
         if (openCards[0].children[0].attributes[0].nodeValue == openCards[1].children[0].attributes[0].nodeValue) {
 
             console.log("matched!");
-            openCards.forEach(function(card) {
+            openCards.forEach(function (card) {
                 card.style.backgroundColor = "green";
             });
 
-        // NOT Matched
-        } else { 
+            // NOT Matched
+        } else {
             console.log("Not Matched");
-            openCards.forEach(function(card) {
+            openCards.forEach(function (card) {
                 card.style.backgroundColor = "red";
-                setTimeout(function() {
+                setTimeout(function () {
                     card.style.backgroundColor = "#333";
                     card.children[0].style.opacity = "0";
                 }, 500);
             });
-            
+
         }
 
         // Empty the Open Cards array
