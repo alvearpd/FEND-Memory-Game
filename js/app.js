@@ -11,6 +11,7 @@ const gameContainer = document.querySelector(".game-container");
 const cardsList = document.createElement("ul");
 gameContainer.appendChild(cardsList);
 
+
 /*
  *  iconsList: icons inventory
  */
@@ -32,6 +33,32 @@ function getIcons(grid) {
     const duplicateIcons = icons.concat(icons);
     // Return the icnos after being shuffled
     return shuffleIcons(duplicateIcons);
+}
+
+/*
+ * shuffleIcons(array)
+ *  - Shuffle the given array
+ * 
+ * Return: The shuffled icons after being duplicated
+ * 
+ */
+function shuffleIcons(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+
+        // And swap it with the current element.
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+    }
+
+    return array;
 }
 
 /*
