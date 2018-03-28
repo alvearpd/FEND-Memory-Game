@@ -12,6 +12,11 @@ ul li {
     background: #333;
     color: #eee;
 }
+ul li.show i {
+    opacity: 1;
+}
 ul li i {
     font-size: 40px;
+    opacity: 0;
+    transition: all 300ms ease;
 }
