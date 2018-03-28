@@ -70,6 +70,7 @@ function cardClick() {
             const currentCard = this;
             const previousCard = currentOpenCards[0];
 
+
             // If this element exist in `allOpenCards` arr
             if (!allOpenCards.includes(currentCard)) {
                 // Check if there are 2 open cards
@@ -87,7 +88,7 @@ function cardClick() {
                         previousCard.style.backgroundColor = "green";
 
                         // Add Current & Previous card to `allOpenCards` to compare it with the original one to determine if the game is over
-                        allOpenCards.push(currentCard, previousCard);
+                        allOpenCards.push(currentCard.childNodes[0].className, previousCard.childNodes[0].className);
 
                         console.log("matches!");
                     } else {
