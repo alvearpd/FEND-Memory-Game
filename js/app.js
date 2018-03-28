@@ -6,7 +6,7 @@ const cardsList = document.querySelector(".cards");
 /*
  * Icons
  */
-const icons = ["fab fa-apple", "fab fa-apple", "fas fa-ban", "fas fa-ban", "far fa-bell", "far fa-bell", "fab fa-bluetooth-b", "fab fa-bluetooth-b", "fas fa-camera-retro", "fas fa-camera-retro", "fas fa-car", "fas fa-car", "fas fa-chess", "fas fa-chess", "far fa-envelope", "far fa-envelope"];
+const iconsList = ["fab fa-apple", "fab fa-apple", "fas fa-ban", "fas fa-ban", "far fa-bell", "far fa-bell", "fab fa-bluetooth-b", "fab fa-bluetooth-b", "fas fa-camera-retro", "fas fa-camera-retro", "fas fa-car", "fas fa-car", "fas fa-chess", "fas fa-chess", "far fa-envelope", "far fa-envelope"];
 
 /*
  * Shuffle
@@ -30,3 +30,21 @@ function shuffle(array) {
 
     return array;
 }
+
+/*
+ * Start Game
+ */
+function start() {
+    const icons = shuffle(iconsList);
+    const cardsFragment = document.createDocumentFragment();
+    for(let i = 0; i < icons.length; i++) {
+        const card = document.createElement("li");
+        card.className = "card";
+        card.innerHTML = "<i class='" + icons[i] + "'></i>";
+        cardsFragment.appendChild(card);
+    }
+    cardsList.appendChild(cardsFragment);
+
+    cardClick();
+}
+start();
