@@ -103,8 +103,6 @@ Array.prototype.forEach.call(cardsArray, function (el) {
     });
 })
 
-const firstCard = document.querySelector("ul li i");
-firstCard.classList = "far fa-edit";
 /*
  * Compare 2 cards
  *   - Check if the `openCards` array have 2 cards
