@@ -31,35 +31,40 @@ function getIcons(grid) {
     const icons = iconsList.slice(0, grid);
     // Duplicate each icon to match them together
     const duplicateIcons = icons.concat(icons);
-    // Return the icnos after being shuffled
-    return shuffleIcons(duplicateIcons);
+    console.log(duplicateIcons);
+
+    // Return the icons after being shuffled
+    // const shuffledIcons = shuffleIcons(duplicateIcons);
+    return duplicateIcons;
 }
 
 /*
  * shuffleIcons(array)
  *  - Shuffle the given array
  * 
+ * @array: Unshuffled array
  * Return: The shuffled icons after being duplicated
  * 
  */
-function shuffleIcons(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
+// function shuffleIcons(array) {
+//     let counter = array.length;
 
-    // While there remain elements to shuffle...
-    while (0 !== currentIndex) {
+//     // While there are elements in the array
+//     while (counter > 0) {
+//         // Pick a random index
+//         let index = Math.floor(Math.random() * counter);
 
-        // Pick a remaining element...
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
+//         // Decrease counter by 1
+//         counter--;
 
-        // And swap it with the current element.
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
+//         // And swap the last element with it
+//         let temp = array[counter];
+//         array[counter] = array[index];
+//         array[index] = temp;
+//     }
 
-    return array;
-}
+//     return array;
+// }
 
 /*
  * Card Grid
@@ -70,7 +75,7 @@ function buildGrid(grid) {
         const newCard = document.createElement("li");
         const icons = getIcons(grid);
         const currentIcon = icons[i];
-        console.log(currentIcon);
+        // console.log(currentIcon);
         newCard.innerHTML = "<i class='" + currentIcon + "'></i>";
 
         cardsFrag.appendChild(newCard);
