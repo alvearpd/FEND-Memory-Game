@@ -37,9 +37,8 @@ function shuffle(array) {
 function start() {
     const icons = shuffle(iconsList);
     const cardsFragment = document.createDocumentFragment();
-    for(let i = 0; i < icons.length; i++) {
+    for (let i = 0; i < icons.length; i++) {
         const card = document.createElement("li");
-        card.className = "card";
         card.innerHTML = "<i class='" + icons[i] + "'></i>";
         cardsFragment.appendChild(card);
     }
@@ -47,4 +46,87 @@ function start() {
 
     cardClick();
 }
+
+
+/* 
+ * Open Cards
+ */
+const allOpenCards = [];
+let currentOpenCards = [];
+let moves = 0;
+
+/* 
+* Click
+*/
+function cardClick() {
+    const cards = cardsList.children;
+    for (let i = 0; i < cards.length; i++) {
+        cards[i].addEventListener("click", function () {
+
+            // Reset icon's opacity [ Reason: If cards doesn't match, the icons would become ivsibile ]
+            cards[i].childNodes[0].style.opacity = "1";
+
+            // Define 2 cards globally within this scope
+            const currentCard = this;
+            const previousCard = currentOpenCards[0];
+
+            // If this element exist in `allOpenCards` arr
+            if (!allOpenCards.includes(currentCard)) {
+                // Check if there are 2 open cards
+                if (currentOpenCards.length === 1) {
+
+                    // Open it, Add it to the `currentOpenCards` arr
+                    currentCard.className = "show";
+                    currentOpenCards.push(currentCard);
+
+                    // Compare the current Card with the current one in `currentOpenCards` arr
+                    if (currentCard.childNodes[0].className === previousCard.childNodes[0].className) {
+
+                        // Correct highlight
+                        currentCard.style.backgroundColor = "green";
+                        previousCard.style.backgroundColor = "green";
+
+                        // Add Current & Previous card to `allOpenCards` to compare it with the original one to determine if the game is over
+                        allOpenCards.push(currentCard, previousCard);
+
+                        console.log("matches!");
+                    } else {
+
+                        // Incorrect highlight
+                        currentCard.style.backgroundColor = "red";
+                        previousCard.style.backgroundColor = "red";
+
+                        // Back to normal
+                        setTimeout(function () {
+                            currentCard.style.backgroundColor = "#333";
+                            currentCard.childNodes[0].style.opacity = "0";
+                            previousCard.style.backgroundColor = "#333";
+                            previousCard.childNodes[0].style.opacity = "0";
+                        }, 500)
+
+                        console.log("NOT MATCHES!");
+                    }
+
+                    // Empty `currentOpenCards`
+                    currentOpenCards = [];
+                    // Add move
+                    moves++;
+
+
+                    // Open it, Add it to the `currentOpenCards` arr
+                } else {
+                    currentCard.className = "show";
+                    currentOpenCards.push(currentCard);
+                }
+            } else {
+
+            }
+        });
+    }
+}
+
+
+
+
+
 start();
