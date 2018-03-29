@@ -68,6 +68,8 @@ function cardClick() {
     for (let i = 0; i < cards.length; i++) {
         cards[i].addEventListener("click", function () {
 
+            // Start Timer
+            timer("start");
 
             // Reset icon's opacity [ Reason: If cards doesn't match, the icons would become ivsibile ]
             cards[i].childNodes[0].style.opacity = "1";
@@ -141,11 +143,36 @@ function cardClick() {
     }
 }
 
+
+/*
+ * Timer
+ */
+let startTime,
+    endTime,
+    gameTime;
+function timer(startOrEnd) {
+    if (startOrEnd === "start") {
+        if (startTime > 0) { // Have a value - Do nothing
+        } else { // Don't have a value - Assign it
+            startTime = Date.now();
+            console.log("Timer Started! " + startTime);
+        }
+    }
+
+    if (startOrEnd === "end") {
+        endTime = Date.now();
+        gameTime = Math.floor( (endTime - startTime) / 1000);
+        return gameTime;
+    }
+
+}
+
 /*
  * Check Game Over
  */
 function checkOver() {
     if (iconsList.sort().toString() === allOpenCards.sort().toString()) {
+        timer("end");
         gameOverMessage();
     }
 }
