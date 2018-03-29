@@ -219,6 +219,8 @@ function repeat() {
     allOpenCards = [];
     moves = 0;
     movesContainer.innerHTML = "--";
+    startTime = 0;
+    endTime = 0;
     gameTime = 0;
 
     // Start the game again
