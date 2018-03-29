@@ -2,8 +2,19 @@
     margin: 0;
     padding: 0;
 }
+h1, h2, h3, h4, h5, h6, div, span, button, li {
+    font-family: 'Chicle', cursive;
+}
 .game-container {
     text-align: center
+}
+.game-container h1 {
+    font-size: 4em;
+    margin-bottom: 0.5em;
+}
+.game-container h2 {
+    font-size: 2em;
+    margin-bottom: 0.5em;
 }
 ul {
     list-style: none;
