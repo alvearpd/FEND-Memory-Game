@@ -186,6 +186,13 @@ function gameOverMessage() {
     const modal = document.querySelector(".modal");
     modal.style.top = "0";
 
+    // Add moves & time to the Modal
+    const totalMoves = document.querySelector("#total_moves");
+    const totalTime = document.querySelector("#total_time");
+
+    totalMoves.innerHTML = moves + 1; // [bug]: `moves` returns the count - 1
+    totalTime.innerHTML = gameTime;
+
     // Play Again
     const repeatBtn = document.querySelector("#repeat");
     repeatBtn.addEventListener("click", function () {
@@ -212,7 +219,7 @@ function repeat() {
     allOpenCards = [];
     moves = 0;
     movesContainer.innerHTML = "--";
-
+    gameTime = 0;
 
     // Start the game again
     start();
