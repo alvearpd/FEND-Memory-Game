@@ -41,6 +41,7 @@ function start() {
     const cardsFragment = document.createDocumentFragment();
     for (let i = 0; i < icons.length; i++) {
         const card = document.createElement("li");
+        card.setAttribute("id", "card-" + (i + 1));
         card.innerHTML = "<i class='" + icons[i] + "'></i>";
         cardsFragment.appendChild(card);
     }
@@ -67,6 +68,7 @@ function cardClick() {
     for (let i = 0; i < cards.length; i++) {
         cards[i].addEventListener("click", function () {
 
+
             // Reset icon's opacity [ Reason: If cards doesn't match, the icons would become ivsibile ]
             cards[i].childNodes[0].style.opacity = "1";
 
@@ -77,49 +79,54 @@ function cardClick() {
 
             // If this element exist in `allOpenCards` arr
             if (!allOpenCards.includes(currentCard)) {
+
                 // Check if there are 2 open cards
                 if (currentOpenCards.length === 1) {
 
-                    // Open it, Add it to the `currentOpenCards` arr
-                    currentCard.className = "show";
-                    currentOpenCards.push(currentCard);
+                    // If the user clicked on the same card
+                    if (currentCard.id !== previousCard.id) {
 
-                    // Compare the current Card with the current one in `currentOpenCards` arr
-                    if (currentCard.childNodes[0].className === previousCard.childNodes[0].className) {
+                        // Open it, Add it to the `currentOpenCards` arr
+                        currentCard.className = "show";
+                        currentOpenCards.push(currentCard);
 
-                        // Correct highlight
-                        currentCard.style.backgroundColor = "green";
-                        previousCard.style.backgroundColor = "green";
+                        // Compare the current Card with the current one in `currentOpenCards` arr
+                        if (currentCard.childNodes[0].className === previousCard.childNodes[0].className) {
 
-                        // Add Current & Previous card to `allOpenCards` to compare it with the original one to determine if the game is over
-                        allOpenCards.push(currentCard.childNodes[0].className, previousCard.childNodes[0].className);
+                            // Correct highlight
+                            currentCard.style.backgroundColor = "green";
+                            previousCard.style.backgroundColor = "green";
 
-                        console.log("matches!");
+                            // Add Current & Previous card to `allOpenCards` to compare it with the original one to determine if the game is over
+                            allOpenCards.push(currentCard.childNodes[0].className, previousCard.childNodes[0].className);
 
-                        // Check over
-                        checkOver();
-                    } else {
+                            console.log("matches!");
 
-                        // Incorrect highlight
-                        currentCard.style.backgroundColor = "red";
-                        previousCard.style.backgroundColor = "red";
+                            // Check over
+                            checkOver();
+                        } else {
 
-                        // Back to normal
-                        setTimeout(function () {
-                            currentCard.style.backgroundColor = "#333";
-                            currentCard.childNodes[0].style.opacity = "0";
-                            previousCard.style.backgroundColor = "#333";
-                            previousCard.childNodes[0].style.opacity = "0";
-                        }, 500)
+                            // Incorrect highlight
+                            currentCard.style.backgroundColor = "red";
+                            previousCard.style.backgroundColor = "red";
 
-                        console.log("NOT MATCHES!");
+                            // Back to normal
+                            setTimeout(function () {
+                                currentCard.style.backgroundColor = "#333";
+                                currentCard.childNodes[0].style.opacity = "0";
+                                previousCard.style.backgroundColor = "#333";
+                                previousCard.childNodes[0].style.opacity = "0";
+                            }, 500)
+
+                            console.log("NOT MATCHES!");
+                        }
+
+                        // Empty `currentOpenCards`
+                        currentOpenCards = [];
+                        // Add move
+                        moves++;
+                        movesContainer.innerHTML = moves;
                     }
-
-                    // Empty `currentOpenCards`
-                    currentOpenCards = [];
-                    // Add move
-                    moves++;
-                    movesContainer.innerHTML = moves;
 
 
                     // Open it, Add it to the `currentOpenCards` arr
@@ -138,7 +145,7 @@ function cardClick() {
  * Check Game Over
  */
 function checkOver() {
-    if(iconsList.sort().toString() === allOpenCards.sort().toString()) {
+    if (iconsList.sort().toString() === allOpenCards.sort().toString()) {
         gameOverMessage();
     }
 }
@@ -154,7 +161,7 @@ function gameOverMessage() {
 
     // Play Again
     const repeatBtn = document.querySelector("#repeat");
-    repeatBtn.addEventListener("click", function() {
+    repeatBtn.addEventListener("click", function () {
 
         // Hide the modal
         modal.style.top = "-100%";
@@ -179,7 +186,7 @@ function repeat() {
     moves = 0;
     movesContainer.innerHTML = "--";
 
-    
+
     // Start the game again
     start();
 }
