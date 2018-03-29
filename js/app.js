@@ -130,14 +130,21 @@ function cardClick() {
 }
 
 /*
- * Game Over
+ * Check Game Over
  */
 function checkOver() {
     if(iconsList.sort().toString() === allOpenCards.sort().toString()) {
-        alert("GAME OVER!");
+        gameOverMessage();
     }
 }
 
+/* 
+ * Game Over Message
+ */
+function gameOverMessage() {
+    const modal = document.querySelector(".modal");
+    modal.style.top = "0";
+}
 
 
 start();
