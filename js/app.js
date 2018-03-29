@@ -6,7 +6,9 @@ const cardsList = document.querySelector(".cards");
 /*
  * Icons
  */
-const iconsList = ["fab fa-apple", "fab fa-apple", "fas fa-ban", "fas fa-ban", "far fa-bell", "far fa-bell", "fab fa-bluetooth-b", "fab fa-bluetooth-b", "fas fa-camera-retro", "fas fa-camera-retro", "fas fa-car", "fas fa-car", "fas fa-chess", "fas fa-chess", "far fa-envelope", "far fa-envelope"];
+const iconsList = ["fab fa-apple", "fab fa-apple", "fas fa-ban", "fas fa-ban", "far fa-bell", "far fa-bell", "fab fa-bluetooth-b", "fab fa-bluetooth-b"];
+
+// , "fas fa-camera-retro", "fas fa-camera-retro", "fas fa-car", "fas fa-car", "fas fa-chess", "fas fa-chess", "far fa-envelope", "far fa-envelope"
 
 /*
  * Shuffle
@@ -51,7 +53,7 @@ function start() {
 /* 
  * Open Cards
  */
-const allOpenCards = [];
+let allOpenCards = [];
 let currentOpenCards = [];
 let moves = 0;
 
@@ -142,8 +144,40 @@ function checkOver() {
  * Game Over Message
  */
 function gameOverMessage() {
+
+    // Display the modal
     const modal = document.querySelector(".modal");
     modal.style.top = "0";
+
+    // Play Again
+    const repeatBtn = document.querySelector("#repeat");
+    repeatBtn.addEventListener("click", function() {
+
+        // Hide the modal
+        modal.style.top = "-100%";
+
+        // Start the game again
+        repeat();
+    });
+}
+
+/*
+ * Play again [ repeat ]
+ */
+function repeat() {
+
+    // Delete current cards
+    while (cardsList.firstChild) {
+        cardsList.removeChild(cardsList.firstChild);
+    }
+
+    // Reset variables to save the new data
+    allOpenCards = [];
+    moves = 0;
+
+    
+    // Start the game again
+    start();
 }
 
 
