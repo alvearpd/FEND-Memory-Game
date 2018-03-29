@@ -7,4 +7,5 @@ The 3rd project in The Front-end Web Developer Nanodegree
 - Keep searching for this image's peer in other cards as well
 
 ## Features
-- Calculate your wrong moves [ Correct attemps won't be calculated! ]
+- Count your moves
+- Calculate your Gameplay time
