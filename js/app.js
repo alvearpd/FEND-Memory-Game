@@ -56,6 +56,8 @@ function start() {
 let allOpenCards = [];
 let currentOpenCards = [];
 let moves = 0;
+const movesContainer = document.querySelector(".moves");
+
 
 /* 
 * Click
@@ -117,6 +119,7 @@ function cardClick() {
                     currentOpenCards = [];
                     // Add move
                     moves++;
+                    movesContainer.innerHTML = moves;
 
 
                     // Open it, Add it to the `currentOpenCards` arr
@@ -174,6 +177,7 @@ function repeat() {
     // Reset variables to save the new data
     allOpenCards = [];
     moves = 0;
+    movesContainer.innerHTML = "--";
 
     
     // Start the game again

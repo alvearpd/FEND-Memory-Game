@@ -2,6 +2,9 @@
     margin: 0;
     padding: 0;
 }
+.game-container {
+    text-align: center
+}
 ul {
     list-style: none;
     padding-left: 0;
