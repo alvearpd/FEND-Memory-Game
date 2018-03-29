@@ -98,6 +98,8 @@ function cardClick() {
                             // Correct highlight
                             currentCard.style.backgroundColor = "green";
                             previousCard.style.backgroundColor = "green";
+                            currentCard.className = "animated flash";
+                            previousCard.className = "animated flash";
 
                             // Add Current & Previous card to `allOpenCards` to compare it with the original one to determine if the game is over
                             allOpenCards.push(currentCard.childNodes[0].className, previousCard.childNodes[0].className);
@@ -108,12 +110,10 @@ function cardClick() {
                             checkOver();
                         } else {
 
-                            // Incorrect highlight
-                            currentCard.style.backgroundColor = "red";
-                            previousCard.style.backgroundColor = "red";
-
                             // Back to normal
                             setTimeout(function () {
+                                currentCard.className = "animated jello";
+                                previousCard.className = "animated jello";
                                 currentCard.style.backgroundColor = "#333";
                                 currentCard.childNodes[0].style.opacity = "0";
                                 previousCard.style.backgroundColor = "#333";
