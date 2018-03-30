@@ -41,16 +41,35 @@ h1, h2, h3, h4, h5, h6, div, span, button, li {
     margin: 1%;
     margin-bottom: 1vw;
     width: 23%;
-    line-height: 140px;
+    height: 80px;
+    line-height: 90px;
     text-align: center;
     background: #333;
     color: #eee; }
     .cards li.show i {
       opacity: 1; }
     .cards li i {
-      font-size: 40px;
+      font-size: 25px;
       opacity: 0;
       transition: all 300ms ease; }
+  @media all and (min-width: 600px) {
+    .cards li {
+      height: 100px;
+      line-height: 110px; }
+      .cards li i {
+        font-size: 30px; } }
+  @media all and (min-width: 750px) {
+    .cards li {
+      height: 140px;
+      line-height: 160px; }
+      .cards li i {
+        font-size: 40px; } }
+  @media all and (min-width: 1000px) {
+    .cards li {
+      height: 175px;
+      line-height: 200px; }
+      .cards li i {
+        font-size: 50px; } }
 
 .modal {
   position: absolute;
