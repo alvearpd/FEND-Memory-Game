@@ -117,10 +117,9 @@ function cardClick() {
 
                         // Empty `currentOpenCards`
                         currentOpenCards = [];
-                        
-                        // Add move
-                        moves++;
-                        movesContainer.innerHTML = moves;
+
+                        // Add Move
+                        addMove();
                     }
 
 
@@ -134,6 +133,14 @@ function cardClick() {
             }
         });
     }
+}
+
+/*
+ * Add Move
+ */
+function addMove() {
+    moves++;
+    movesContainer.innerHTML = moves;
 }
 
 
