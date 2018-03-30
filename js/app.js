@@ -1,12 +1,19 @@
 /*
- * CardsList
+ * Global Variables
  */
-const cardsList = document.querySelector(".cards");
+let allOpenCards     = [],
+    currentOpenCards = [],
+    moves            = 0;
 
-/*
- * Icons
- */
-const iconsList = ["fab fa-apple", "fab fa-apple", "fas fa-ban", "fas fa-ban", "far fa-bell", "far fa-bell", "fab fa-bluetooth-b", "fab fa-bluetooth-b", "fas fa-camera-retro", "fas fa-camera-retro", "fas fa-car", "fas fa-car", "fas fa-chess", "fas fa-chess", "far fa-envelope", "far fa-envelope"];
+// , "fas fa-camera-retro", "fas fa-camera-retro", "fas fa-car", "fas fa-car", "fas fa-chess", "fas fa-chess", "far fa-envelope", "far fa-envelope"
+
+const iconsList          = ["fab fa-apple", "fab fa-apple", "fas fa-ban", "fas fa-ban", "far fa-bell", "far fa-bell", "fab fa-bluetooth-b", "fab fa-bluetooth-b"],
+      cardsList          = document.querySelector(".cards"),
+      cards              = cardsList.children,
+      movesContainer     = document.querySelector(".moves"),
+      modal              = document.querySelector(".modal"),
+      repeatBtn          = document.querySelector(".features .play-again");
+      repeatBtnFromModal = document.querySelector(".modal .play-again");
 
 /*
  * Shuffle
@@ -50,19 +57,9 @@ function start() {
 
 
 /* 
- * Open Cards
- */
-let allOpenCards = [];
-let currentOpenCards = [];
-let moves = 0;
-const movesContainer = document.querySelector(".moves");
-
-
-/* 
 * Click
 */
 function cardClick() {
-    const cards = cardsList.children;
     for (let i = 0; i < cards.length; i++) {
         cards[i].addEventListener("click", function () {
 
@@ -120,6 +117,7 @@ function cardClick() {
 
                         // Empty `currentOpenCards`
                         currentOpenCards = [];
+                        
                         // Add move
                         moves++;
                         movesContainer.innerHTML = moves;
@@ -151,11 +149,9 @@ function checkOver() {
 /* 
  * Game Over Message
  */
-// Display the modal
-const modal = document.querySelector(".modal");
-
 function gameOverMessage() {
 
+    // Display the modal
     modal.style.top = "0";
 
     // Add moves to the Modal
@@ -163,25 +159,40 @@ function gameOverMessage() {
     totalMoves.innerHTML = moves + 1; // [bug]: `moves` returns the count - 1
 }
 
+
 /*
  * Play Again Buttons
  */
-
-const repeatBtn = document.querySelector(".features .play-again");
-const repeatBtnFromModal = document.querySelector(".modal .play-again");
-
 repeatBtn.addEventListener("click", function() {
+
     // Start the game again
     repeat();
+
 });
 repeatBtnFromModal.addEventListener("click", function () {
+
     // Hide the modal
     modal.style.top = "-150%";
+
     // Start the game again
     repeat();
+
 });
 
 
+/*
+ * Reset Current Values
+ */
+function resetValues() {
+    allOpenCards = [];
+    moves = 0;
+    movesContainer.innerHTML = "--";
+}
+
+
+/* 
+ * Repeat Game 
+ */
 function repeat() {
 
     // Delete current cards
@@ -189,15 +200,12 @@ function repeat() {
         cardsList.removeChild(cardsList.firstChild);
     }
 
-    // Reset variables to save the new data
-    allOpenCards = [];
-    moves = 0;
-    movesContainer.innerHTML = "--";
+    // Reset Current Values
+    resetValues();
 
     // Start the game again
     start();
 }
 
-
-
 start();
+ 
