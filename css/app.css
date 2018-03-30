@@ -1,51 +1,42 @@
 * {
-    margin: 0;
-    padding: 0;
-}
+  margin: 0;
+  padding: 0; }
+
 h1, h2, h3, h4, h5, h6, div, span, button, li {
-    font-family: 'Chicle', cursive;
-}
+  font-family: "Chicle", cursive; }
+
 .game-container {
-    text-align: center;
-    max-width: 1170px;
-    padding: 0 15px;
-    margin: 0 auto;
-}
-.game-container h1 {
+  text-align: center;
+  max-width: 1170px;
+  padding: 0 15px;
+  margin: 0 auto; }
+  .game-container h1 {
     font-size: 4em;
-    margin-bottom: 0.5em;
-}
-.game-container .features {
+    margin-bottom: 0.5em; }
+  .game-container .features {
     font-size: 2em;
     margin-bottom: 0.5em;
-    display: flex;
-}
-.game-container .features .moves-count,
-.game-container .features .repeat {
-    width: 50%;
-}
-.game-container .features .moves-count {
-    text-align: left;
-    padding-left: 1%;
-}
-.game-container .features .repeat {
-    text-align: right;
-    padding-right: 1%;
-}
-.game-container .features .repeat .play-again {
-    cursor: pointer;
-    transition: all 300ms ease;
-}
-.game-container .features .repeat .play-again:hover {
-    transform: rotate(90deg);
-}
+    display: flex; }
+    .game-container .features .moves-count, .game-container .features .repeat {
+      width: 50%; }
+    .game-container .features .moves-count {
+      text-align: left;
+      padding-left: 1%; }
+    .game-container .features .repeat {
+      text-align: right;
+      padding-right: 1%; }
+      .game-container .features .repeat .play-again {
+        cursor: pointer;
+        transition: all 300ms ease; }
+        .game-container .features .repeat .play-again:hover {
+          transform: rotate(90deg); }
+
 .cards {
-    list-style: none;
-    padding-left: 0;    
-    display: flex;
-    flex-wrap: wrap
-}
-.cards li {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-wrap: wrap; }
+  .cards li {
     display: inline-block;
     margin: 1%;
     margin-bottom: 1vw;
@@ -53,52 +44,45 @@ h1, h2, h3, h4, h5, h6, div, span, button, li {
     line-height: 140px;
     text-align: center;
     background: #333;
-    color: #eee;
-}
-.cards li.show i {
-    opacity: 1;
-}
-.cards li i {
-    font-size: 40px;
-    opacity: 0;
-    transition: all 300ms ease;
-}
+    color: #eee; }
+    .cards li.show i {
+      opacity: 1; }
+    .cards li i {
+      font-size: 40px;
+      opacity: 0;
+      transition: all 300ms ease; }
 
 .modal {
-    position: absolute;
-    top: -150%;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255,255,255,0.9);
-    z-index: 99;
-    transition: all 300ms ease;
-}
-.modal .inner {
+  position: absolute;
+  top: -150%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.9);
+  z-index: 99;
+  transition: all 300ms ease; }
+  .modal .inner {
     width: 50%;
     margin: 10% auto;
     padding: 2em;
     text-align: center;
     background: #fffc;
-    box-shadow: 0px 0px 4px 1px #d4d4d4b3;
-}
-.modal .inner h2 {
-    font-size: 2.5em;
-    margin-bottom: 0.5em;
-}
-.modal .inner p {
-    font-size: 1.4em;
-}
-.modal .inner button {
-    margin-top: 1.5em;
-    padding: 0.5em 3em;
-    font-size: 1.1em;
-    border: 0;
-    background: #fff;
-    box-shadow: 1px 1px 5px 0px #ccc;
-    cursor: pointer;
-    transition: all 300ms ease;
-}
-.modal .inner button:hover {
-    box-shadow: none;
-}
+    box-shadow: 0px 0px 4px 1px #d4d4d4b3; }
+    .modal .inner h2 {
+      font-size: 2.5em;
+      margin-bottom: 0.5em; }
+    .modal .inner p {
+      font-size: 1.4em; }
+    .modal .inner button {
+      margin-top: 1.5em;
+      padding: 0.5em 3em;
+      font-size: 1.1em;
+      border: 0;
+      background: #fff;
+      box-shadow: 1px 1px 5px 0px #ccc;
+      cursor: pointer;
+      transition: all 300ms ease; }
+      .modal .inner button:hover {
+        box-shadow: none; }
+
+/*# sourceMappingURL=app.css.map */
