@@ -68,9 +68,6 @@ function cardClick() {
     for (let i = 0; i < cards.length; i++) {
         cards[i].addEventListener("click", function () {
 
-            // Start Timer
-            timer("start");
-
             // Reset icon's opacity [ Reason: If cards doesn't match, the icons would become ivsibile ]
             cards[i].childNodes[0].style.opacity = "1";
 
@@ -145,34 +142,10 @@ function cardClick() {
 
 
 /*
- * Timer
- */
-let startTime,
-    endTime,
-    gameTime;
-function timer(startOrEnd) {
-    if (startOrEnd === "start") {
-        if (startTime > 0) { // Have a value - Do nothing
-        } else { // Don't have a value - Assign it
-            startTime = Date.now();
-            console.log("Timer Started! " + startTime);
-        }
-    }
-
-    if (startOrEnd === "end") {
-        endTime = Date.now();
-        gameTime = Math.floor( (endTime - startTime) / 1000);
-        return gameTime;
-    }
-
-}
-
-/*
  * Check Game Over
  */
 function checkOver() {
     if (iconsList.sort().toString() === allOpenCards.sort().toString()) {
-        timer("end");
         gameOverMessage();
     }
 }
@@ -186,12 +159,9 @@ function gameOverMessage() {
     const modal = document.querySelector(".modal");
     modal.style.top = "0";
 
-    // Add moves & time to the Modal
+    // Add moves to the Modal
     const totalMoves = document.querySelector("#total_moves");
-    const totalTime = document.querySelector("#total_time");
-
     totalMoves.innerHTML = moves + 1; // [bug]: `moves` returns the count - 1
-    totalTime.innerHTML = gameTime;
 
     // Play Again
     const repeatBtn = document.querySelector("#repeat");
@@ -202,6 +172,7 @@ function gameOverMessage() {
 
         // Start the game again
         repeat();
+
     });
 }
 
@@ -219,13 +190,9 @@ function repeat() {
     allOpenCards = [];
     moves = 0;
     movesContainer.innerHTML = "--";
-    startTime = 0;
-    endTime = 0;
-    gameTime = 0;
 
     // Start the game again
     start();
 }
-
 
 start();
