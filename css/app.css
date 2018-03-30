@@ -41,7 +41,7 @@ ul li i {
 
 .modal {
     position: absolute;
-    top: 100%;
+    top: -150%;
     left: 0;
     width: 100%;
     height: 100%;
@@ -51,7 +51,7 @@ ul li i {
 }
 .modal .inner {
     width: 50%;
-    margin: 20% auto;
+    margin: 10% auto;
     padding: 2em;
     text-align: center;
     background: #fffc;

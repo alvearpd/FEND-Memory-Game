@@ -178,12 +178,10 @@ repeatBtn.addEventListener("click", function() {
 });
 repeatBtnFromModal.addEventListener("click", function () {
     // Hide the modal
-    modal.style.top = "-100%";
+    modal.style.top = "-150%";
     // Start the game again
     repeat();
 });
-
-
 
 
 function repeat() {
