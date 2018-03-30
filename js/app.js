@@ -153,32 +153,39 @@ function checkOver() {
 /* 
  * Game Over Message
  */
+// Display the modal
+const modal = document.querySelector(".modal");
+
 function gameOverMessage() {
 
-    // Display the modal
-    const modal = document.querySelector(".modal");
     modal.style.top = "0";
 
     // Add moves to the Modal
     const totalMoves = document.querySelector("#total_moves");
     totalMoves.innerHTML = moves + 1; // [bug]: `moves` returns the count - 1
-
-    // Play Again
-    const repeatBtn = document.querySelector("#repeat");
-    repeatBtn.addEventListener("click", function () {
-
-        // Hide the modal
-        modal.style.top = "-100%";
-
-        // Start the game again
-        repeat();
-
-    });
 }
 
 /*
- * Play again [ repeat ]
+ * Play Again Buttons
  */
+
+const repeatBtn = document.querySelector(".options .play-again");
+const repeatBtnFromModal = document.querySelector(".modal .play-again");
+
+repeatBtn.addEventListener("click", function() {
+    // Start the game again
+    repeat();
+});
+repeatBtnFromModal.addEventListener("click", function () {
+    // Hide the modal
+    modal.style.top = "-100%";
+    // Start the game again
+    repeat();
+});
+
+
+
+
 function repeat() {
 
     // Delete current cards
@@ -194,5 +201,7 @@ function repeat() {
     // Start the game again
     start();
 }
+
+
 
 start();
