@@ -169,7 +169,7 @@ function gameOverMessage() {
  * Play Again Buttons
  */
 
-const repeatBtn = document.querySelector(".options .play-again");
+const repeatBtn = document.querySelector(".features .play-again");
 const repeatBtnFromModal = document.querySelector(".modal .play-again");
 
 repeatBtn.addEventListener("click", function() {
