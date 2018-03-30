@@ -8,4 +8,3 @@ The 3rd project in The Front-end Web Developer Nanodegree
 
 ## Features
 - Count your moves
-- Calculate your Gameplay time
