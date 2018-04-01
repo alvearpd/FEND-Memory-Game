@@ -192,6 +192,7 @@ repeatBtnFromModal.addEventListener("click", function () {
  */
 function resetValues() {
     allOpenCards = [];
+    currentOpenCards = [];
     moves = 0;
     movesContainer.innerHTML = "--";
 }
