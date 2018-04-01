@@ -55,7 +55,7 @@ function start() {
     cardClick();
 }
 
-
+let firstClick = true;
 /* 
 * Click
 */
@@ -70,6 +70,11 @@ function cardClick() {
             const currentCard = this;
             const previousCard = currentOpenCards[0];
 
+            // The First Click? Start the timer!
+            if(firstClick) {
+                startTimer();
+                firstClick = false;
+            }
 
             // If this element exist in `allOpenCards` arr
             if (!allOpenCards.includes(currentCard)) {
@@ -170,6 +175,18 @@ function gameOverMessage() {
 
     // Add Rate
     rateContainer.innerHTML = rateHTML;
+
+    // Stop Timer
+    stopTimer();
+
+    // Add time to the Modal
+    const totalHours       = document.querySelector("#totalHours");
+    const totalMinutes     = document.querySelector("#totalMinutes");
+    const totalSeconds     = document.querySelector("#totalSeconds");
+    totalHours.innerHTML   = hours;
+    totalMinutes.innerHTML = minutes;
+    totalSeconds.innerHTML = seconds;
+
 }
 
 
@@ -228,6 +245,59 @@ function rating() {
 
 
 /*
+ * Timer [ Variables ] 
+ */
+const secondsContainer = document.querySelector("#seconds"),
+      minutesContainer = document.querySelector("#minutes"),
+      hoursContainer   = document.querySelector("#hours");
+let totalTime = 0;
+let incrementer;
+
+/*
+ * Timer [ Start ] 
+ */
+function startTimer() {
+
+    // Start Incrementer
+    incrementer = setInterval(function() {
+
+        // Add totalTime by 1
+        totalTime += 1;
+
+        // Convert Total Time to H:M:S
+        calculateTime(totalTime);
+
+        // Change the current time values
+        secondsContainer.innerHTML = seconds;
+        minutesContainer.innerHTML = minutes;
+        hoursContainer.innerHTML   = hours;
+
+    }, 1000);
+
+    
+}
+
+/*
+ * Timer [ Calculate Time ] 
+ */
+let hours, minutes, seconds; 
+function calculateTime(totalTime) {
+    hours   = Math.floor( totalTime / 60 / 60);
+    minutes = Math.floor( (totalTime / 60) % 60);
+    seconds = totalTime % 60;
+
+}
+
+/*
+ * Timer [ Stop ] 
+ */
+function stopTimer() {
+    // Stop Timer
+    clearInterval(incrementer);
+}
+
+
+/*
  * Reset Current Values
  */
 function resetValues() {
@@ -238,6 +308,13 @@ function resetValues() {
     stars[1].style.color = "#ffb400";
     stars[2].style.color = "#ffb400";
     rateHTML = "";
+    hoursContainer.innerHTML = "00";
+    minutesContainer.innerHTML = "00";
+    secondsContainer.innerHTML = "00";
+    totalTime = 0;
+    hours = 0;
+    minutes = 0;
+    seconds = 0;
 }
 
 
