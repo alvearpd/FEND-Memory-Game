@@ -120,6 +120,9 @@ function cardClick() {
 
                         // Add Move
                         addMove();
+
+                        // Rating
+                        rating();
                     }
 
 
@@ -164,6 +167,9 @@ function gameOverMessage() {
     // Add moves to the Modal
     const totalMoves = document.querySelector("#total_moves");
     totalMoves.innerHTML = moves + 1; // [bug]: `moves` returns the count - 1
+
+    // Add Rate
+    rateContainer.innerHTML = rateHTML;
 }
 
 
@@ -186,6 +192,40 @@ repeatBtnFromModal.addEventListener("click", function () {
 
 });
 
+/* 
+ * Star Rating
+ */
+
+// Exact Moves
+const exactMoves = iconsList.length / 2;
+
+// All Moves
+// `moves`
+
+// Rate 
+const rateContainer = document.querySelector("#total_rate");
+let rateHTML = "";
+
+const rateStep = 3;
+const maxStars = exactMoves + rateStep;
+const minStars = exactMoves + ( 2 * rateStep);
+
+const stars    = document.querySelectorAll(".star");
+
+function rating() {
+
+    if(moves < maxStars) {
+        rateHTML = "<i class='star fas fa-star'></i><i class='star fas fa-star'></i><i class='star fas fa-star'></i>";
+    } else if(moves < minStars) {
+        stars[2].style.color = "#444";
+        rateHTML = "<i class='star fas fa-star'></i><i class='star fas fa-star'></i>";
+    } else {
+        stars[1].style.color = "#444";
+        rateHTML = "<i class='star fas fa-star'></i>";
+    }
+
+}
+
 
 /*
  * Reset Current Values
@@ -195,6 +235,9 @@ function resetValues() {
     currentOpenCards = [];
     moves = 0;
     movesContainer.innerHTML = "--";
+    stars[1].style.color = "#ffb400";
+    stars[2].style.color = "#ffb400";
+    rateHTML = "";
 }
 
 
