@@ -309,6 +309,8 @@ function resetValues() {
     hoursContainer.innerHTML = "00";
     minutesContainer.innerHTML = "00";
     secondsContainer.innerHTML = "00";
+    stopTimer();
+    firstClick = true;
     totalTime = 0;
     hours = 0;
     minutes = 0;
