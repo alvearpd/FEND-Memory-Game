@@ -93,8 +93,8 @@ function cardClick() {
                             // Correct highlight
                             currentCard.style.backgroundColor = "green";
                             previousCard.style.backgroundColor = "green";
-                            currentCard.className = "animated flash";
-                            previousCard.className = "animated flash";
+                            currentCard.className = "animated flash disabled";
+                            previousCard.className = "animated flash disabled";
 
                             // Add Current & Previous card to `allOpenCards` to compare it with the original one to determine if the game is over
                             allOpenCards.push(currentCard.childNodes[0].className, previousCard.childNodes[0].className);
@@ -241,7 +241,7 @@ function rating() {
 
 }
 
-
+ 
 /*
  * Timer [ Variables ] 
  */

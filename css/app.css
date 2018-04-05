@@ -50,6 +50,8 @@ h1, h2, h3, h4, h5, h6, div, span, button, li {
     text-align: center;
     background: #333;
     color: #eee; }
+    .cards li.disabled {
+      pointer-events: none; }
     .cards li.show i {
       opacity: 1; }
     .cards li i {
