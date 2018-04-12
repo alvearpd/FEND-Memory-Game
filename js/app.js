@@ -99,8 +99,6 @@ function cardClick() {
                             // Add Current & Previous card to `allOpenCards` to compare it with the original one to determine if the game is over
                             allOpenCards.push(currentCard.childNodes[0].className, previousCard.childNodes[0].className);
 
-                            console.log("matches!");
-
                             // Check over
                             checkOver();
                         } else {
@@ -115,7 +113,6 @@ function cardClick() {
                                 previousCard.childNodes[0].style.opacity = "0";
                             }, 500)
 
-                            console.log("NOT MATCHES!");
                         }
 
                         // Empty `currentOpenCards`
