@@ -151,7 +151,7 @@ function addMove() {
  * Check Game Over
  */
 function checkOver() {
-    if (iconsList.sort().toString() === allOpenCards.sort().toString()) {
+    if (iconsList.length === allOpenCards.length) {
         gameOverMessage();
     }
 }
