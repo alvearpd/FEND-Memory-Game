@@ -12,21 +12,20 @@ h1, h2, h3, h4, h5, h6, div, span, button, li
     margin: 0 auto
 
     h1
-        font-size: 4em
-        margin-bottom: 0.5em
+        font-size: 3rem
+        margin: 1rem 0
 
     .features
-        font-size: 2em
-        margin-bottom: 0.5em
+        font-size: 1.7rem
+        margin-bottom: 0.5rem
         display: flex
+        flex-wrap: wrap
 
         .moves-count, .timer-container, .stars-rating, .repeat
-            width: 25%
+            width: 50%
+            margin-bottom: 1rem
+            text-align: center
 
-        .moves-count
-            text-align: left
-            padding-left: 1%
-        
         .timer-container, .stars-rating
             text-align: center
             
@@ -35,9 +34,6 @@ h1, h2, h3, h4, h5, h6, div, span, button, li
                 color: #ffb400
 
         .repeat
-            text-align: right
-            padding-right: 1%
-
             .play-again
                 cursor: pointer
                 transition: all 300ms ease
@@ -127,6 +123,12 @@ h1, h2, h3, h4, h5, h6, div, span, button, li
                 font-size: 30px
 
 @media all and (min-width: 750px)
+    .game-container
+        h1
+            font-size: 3.5rem
+        .features
+            font-size: 2rem
+
     .cards
         width: 650px
 
