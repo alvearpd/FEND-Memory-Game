@@ -373,10 +373,8 @@ function resetValues() {
  */
 function repeat() {
 
-    // Delete current cards
-    while (cardsList.firstChild) {
-        cardsList.removeChild(cardsList.firstChild);
-    }
+    // Remove all cards, as they will get rebuild again when we invoke `start()` which invokes `init()` that create the cards
+    cardsList.innerHTML = "";
 
     // Reset Current Values
     resetValues();
