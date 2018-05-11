@@ -124,7 +124,7 @@ function cardClick() {
                 if (currentCard.id !== previousCard.id) {
 
                     // Open it, Add it to the `currentOpenedCards` arr
-                    currentCard.className = "show";
+                    currentCard.className = "show animated flipInY";
                     currentOpenedCards.push(currentCard);
 
                     // Compare the `current` card with the `previous` card (the first one in `currentOpenedCards` array) 
@@ -161,7 +161,7 @@ function cardClick() {
                  * 2) Add this card to the `currentOpenedCards` array
                  * 
                  */
-                currentCard.className = "show";
+                currentCard.className = "show animated flipInY";
                 currentOpenedCards.push(currentCard);
             }
         });
@@ -186,8 +186,8 @@ function isMatched(currentCard, previousCard) {
     if (currentCard.innerHTML === previousCard.innerHTML) {
 
         // Change them to success state
-        currentCard.className = "show matched animated flash disabled";
-        previousCard.className = "show matched animated flash disabled";
+        currentCard.className = "show matched animated bounceOutDown disabled";
+        previousCard.className = "show matched animated bounceOutDown disabled";
 
         // Add Current & Previous card to `matchedCards` array
         matchedCards.push(currentCard, previousCard);
