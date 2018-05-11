@@ -1,8 +1,8 @@
 /*
  * Global Variables
  */
-let allOpenCards     = [],
-    currentOpenCards = [],
+let matchedCards     = [],
+    currentOpenedCards = [],
     moves            = 0,
     rateHTML = "",
     rateStep = 6,
@@ -54,8 +54,18 @@ function shuffle(array) {
  * Init Game
  */
 function init() {
+    // Shuffle the current `iconsList`
     const icons = shuffle(iconsList);
+    // Using `createDocumentFragment` for a better performance, but you can `appendChild` to the parent directly!
     const cardsFragment = document.createDocumentFragment();
+    
+    /*
+     *
+     * 1) Create the cards based on the given length of `icons` array
+     * 2) Put a random icon in each card
+     * 3) Append the created cards to the container `cardsList`
+     *
+     */
     for (let i = 0; i < icons.length; i++) {
         const card = document.createElement("li");
         card.setAttribute("id", "card-" + (i + 1));
@@ -73,90 +83,133 @@ function start() {
     // Initialize Game
     init();
 
-    // Click Functionality
+    // Start the 'Click' Functionality
     cardClick();
 }
 
 /* 
-* Click
-*/
+ * Click
+ */
 function cardClick() {
     for (let i = 0; i < cards.length; i++) {
+        
+        // Add a "click" event to each card [ The following function will only be executed if a card was clicked! ]
         cards[i].addEventListener("click", function () {
 
-            // Reset icon's opacity [ Reason: If cards doesn't match, the icons would become ivsibile ]
-            cards[i].childNodes[0].style.opacity = "1";
-
-            // Define 2 cards globally within this scope
-            const currentCard = this;
-            const previousCard = currentOpenCards[0];
-
+            // Cache the `current` and `previous` clicked cards
+            const currentCard = this; // current card
+            const previousCard = currentOpenedCards[0]; // the previous one
+            
             // The First Click? Start the timer!
             if(firstClick) {
                 startTimer();
-                firstClick = false;
+                firstClick = false; // This will prevent the timer to start again if the user clicked on another card
             }
 
-            // Check if there is 1 open card
-            if (currentOpenCards.length === 1) {
+            /*
+             *
+             * If we have ONE card inside our `currentOpenedCards`
+             * Do the following:
+             *
+             * 1) Make sure that the user didn't click on the same card twice
+             * 2) Compare the `current` clicked card with the exisiting one on our `currentOpenedCards` array
+             * 3) Delete both cards from our `currentOpenedCards`
+             * 4) Add a move
+             * 5) Change the rating
+             *
+             */
+            if (currentOpenedCards.length === 1) {
 
                 // If the user clicked on the same card
                 if (currentCard.id !== previousCard.id) {
 
-                    // Open it, Add it to the `currentOpenCards` arr
+                    // Open it, Add it to the `currentOpenedCards` arr
                     currentCard.className = "show";
-                    currentOpenCards.push(currentCard);
+                    currentOpenedCards.push(currentCard);
 
-                    // Compare the current Card with the current one in `currentOpenCards` arr
+                    // Compare the `current` card with the `previous` card (the first one in `currentOpenedCards` array) 
                     isMatched(currentCard, previousCard);
 
-                    // Empty `currentOpenCards`
-                    currentOpenCards = [];
+                    /*
+                     *
+                     * Empty `currentOpenedCards`
+                     *
+                     * The `currentOpenedCards` array MUST be empty
+                     * Next time the user click on a card, that card would become the first index,
+                     * Then, when click on another one, both of them will be compared,
+                     * If they are MATCHED or NOT, that doesn't matter here.
+                     * We have to reset the `currentOpenedCards` array, to start filling it again with 2 new clicked cards!
+                     *
+                     */
+                    currentOpenedCards = [];
 
-                    // Add Move
+                    // Add a move
                     addMove();
 
-                    // Rating
+                    // Change the rating
                     rating();
                 }
 
-                // Open it, Add it to the `currentOpenCards` arr
             } else {
+                
+                /*
+                 *
+                 * If we don't have any card inside our `currentOpenedCards` array
+                 * Do the following:
+                 *
+                 * 1) Show the card's icon
+                 * 2) Add this card to the `currentOpenedCards` array
+                 * 
+                 */
                 currentCard.className = "show";
-                currentOpenCards.push(currentCard);
+                currentOpenedCards.push(currentCard);
             }
         });
     }
 }
 
-/*
- * Is Matched?
- */
+// Compare the 2 opened cards
 function isMatched(currentCard, previousCard) {
-    if (currentCard.childNodes[0].className === previousCard.childNodes[0].className) {
+    
+    /* 
+     * Matched?
+     * Do the following:
+     * 
+     * 1) Change them to success state:
+     *    - Keep displaying the icon
+     *    - Animate
+     *    - Disable them (cannot be clickable anymore)
+     * 2) Add both cards to `matchedCards` array
+     * 3) Check if the game is over or not
+     *
+     */
+    if (currentCard.innerHTML === previousCard.innerHTML) {
 
-        // Correct highlight
-        currentCard.style.backgroundColor = "green";
-        previousCard.style.backgroundColor = "green";
-        currentCard.className = "animated flash disabled";
-        previousCard.className = "animated flash disabled";
+        // Change them to success state
+        currentCard.className = "show matched animated flash disabled";
+        previousCard.className = "show matched animated flash disabled";
 
-        // Add Current & Previous card to `allOpenCards` to compare it with the original one to determine if the game is over
-        allOpenCards.push(currentCard.childNodes[0].className, previousCard.childNodes[0].className);
+        // Add Current & Previous card to `matchedCards` array
+        matchedCards.push(currentCard, previousCard);
 
         // Game Over?
         isOver();
 
     } else {
-
-        // Back to normal
+        
+        /*
+         * Not Matched?
+         * Do the following:
+         *
+         * 1) Back both cards to the normal state:
+         *    - Hide the icon
+         *    - Animate
+         *
+         */
         setTimeout(function () {
+            // Use `className` to replace existing classes with the given ones
             currentCard.className = "animated jello";
             previousCard.className = "animated jello";
-            currentCard.style.backgroundColor = "#333";
-            currentCard.childNodes[0].style.opacity = "0";
-            previousCard.style.backgroundColor = "#333";
-            previousCard.childNodes[0].style.opacity = "0";
         }, 500)
 
     }
@@ -164,7 +217,7 @@ function isMatched(currentCard, previousCard) {
 
 
 /*
- * Add Move
+ * Add a move
  */
 function addMove() {
     moves++;
@@ -176,7 +229,9 @@ function addMove() {
  * Game Over?
  */
 function isOver() {
-    if (iconsList.length === allOpenCards.length) {
+    // Check if the `matchedCards` length equals to the `iconsList` array
+    if (iconsList.length === matchedCards.length) {
+        // If it is over, display a popup message!
         gameOverMessage();
     }
 }
@@ -229,11 +284,13 @@ repeatBtnFromModal.addEventListener("click", function () {
 
 });
 
+
 /* 
  * Star Rating
  */
 function rating() {
-
+    
+    // This condition below relies on the value of `maxStars` & `minStars` variables
     if(moves < maxStars) {
         rateHTML = "<i class='star fas fa-star'></i><i class='star fas fa-star'></i><i class='star fas fa-star'></i>";
     } else if(moves < minStars) {
@@ -292,8 +349,8 @@ function stopTimer() {
  * Reset Current Values
  */
 function resetValues() {
-    allOpenCards = [];
-    currentOpenCards = [];
+    matchedCards = [];
+    currentOpenedCards = [];
     moves = 0;
     movesContainer.innerHTML = "--";
     stars[1].style.color = "#ffb400";
@@ -328,5 +385,7 @@ function repeat() {
     start();
 }
 
-start();
- 
+
+
+// Start the game for the first time!
+start(); 
