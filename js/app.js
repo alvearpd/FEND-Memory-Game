@@ -68,7 +68,6 @@ function init() {
      */
     for (let i = 0; i < icons.length; i++) {
         const card = document.createElement("li");
-        card.setAttribute("id", "card-" + (i + 1));
         card.innerHTML = "<i class='" + icons[i] + "'></i>";
         cardsFragment.appendChild(card);
     }
@@ -120,35 +119,39 @@ function cardClick() {
              */
             if (currentOpenedCards.length === 1) {
 
-                // If the user clicked on the same card
-                if (currentCard.id !== previousCard.id) {
+                /* 
+                 *
+                 * show: Allows you to see the icon
+                 * disabled: To avoid clicking on the same card again!
+                 * animated & flipInY: Both of the are `animate.css` classes for a nicer animation effect
+                 *
+                 */ 
+                currentCard.className = "show disabled animated flipInY";
 
-                    // Open it, Add it to the `currentOpenedCards` arr
-                    currentCard.className = "show animated flipInY";
-                    currentOpenedCards.push(currentCard);
+                // Add this card to the `currentOpenedCards` array
+                currentOpenedCards.push(currentCard);
 
-                    // Compare the `current` card with the `previous` card (the first one in `currentOpenedCards` array) 
-                    isMatched(currentCard, previousCard);
+                // Compare the `current` card with the `previous` card (the first one in `currentOpenedCards` array) 
+                isMatched(currentCard, previousCard);
 
-                    /*
-                     *
-                     * Empty `currentOpenedCards`
-                     *
-                     * The `currentOpenedCards` array MUST be empty
-                     * Next time the user click on a card, that card would become the first index,
-                     * Then, when click on another one, both of them will be compared,
-                     * If they are MATCHED or NOT, that doesn't matter here.
-                     * We have to reset the `currentOpenedCards` array, to start filling it again with 2 new clicked cards!
-                     *
-                     */
-                    currentOpenedCards = [];
+                /*
+                 *
+                 * Empty `currentOpenedCards`
+                 *
+                 * The `currentOpenedCards` array MUST be empty
+                 * Next time the user click on a card, that card would become the first index,
+                 * Then, when click on another one, both of them will be compared,
+                 * If they are MATCHED or NOT, that doesn't matter here.
+                 * We have to reset the `currentOpenedCards` array, to start filling it again with 2 new clicked cards!
+                 *
+                 */
+                currentOpenedCards = [];
 
-                    // Add a move
-                    addMove();
+                // Add a move
+                addMove();
 
-                    // Change the rating
-                    rating();
-                }
+                // Change the rating
+                rating();
 
             } else {
                 
@@ -157,11 +160,14 @@ function cardClick() {
                  * If we don't have any card inside our `currentOpenedCards` array
                  * Do the following:
                  *
-                 * 1) Show the card's icon
+                 * 1) Add the follwing CSS Classes: 
+                 *    - show: To see the icon inside your card
+                 *    - disabled: To avoid clicking on the same card again!
+                 *    - animated & flipInY: Both of the are `animate.css` classes for a nicer animation effect
                  * 2) Add this card to the `currentOpenedCards` array
                  * 
                  */
-                currentCard.className = "show animated flipInY";
+                currentCard.className = "show disabled animated flipInY";
                 currentOpenedCards.push(currentCard);
             }
         });
