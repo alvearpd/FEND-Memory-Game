@@ -18,3 +18,6 @@ So, you gotta have a good memory!
 - Live Stopwatch
 - Rating System [ Based on your **Moves!** ]
 - Retry/Restart the game button
+
+## Inside the game
+![memory-game-udacity-fend](https://user-images.githubusercontent.com/16986422/39929094-6f7cd7d4-5537-11e8-9ff8-4d0746535353.PNG)
